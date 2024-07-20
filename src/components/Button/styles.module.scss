@@ -1,0 +1,46 @@
+.primary {
+  position: relative;
+  background-color: $red;
+  border-radius: 50%;
+  color: $white;
+  padding: 1.6rem 2.4rem;
+  @include highlighted;
+
+  &:hover {
+    &:before {
+      content: '';
+      background-color: $black;
+      opacity: 2.5;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.25rem 2.8rem;
+  background-color: $white;
+  border: 1px solid $rose-400;
+  @include highlighted;
+  color: $rose-900;
+
+  &:hover {
+    color: $red;
+    border-color: $red;
+  }
+}
+
+.product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.25rem 2.8rem;
+  background-color: $red;
+  @include highlighted;
+  color: $rose-900;
+}
