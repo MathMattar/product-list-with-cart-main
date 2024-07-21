@@ -1,0 +1,11 @@
+.desserts-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  padding: 2.4rem;
+
+  .dessets-title {
+    color: $rose-900;
+    @include title;
+  }
+}
