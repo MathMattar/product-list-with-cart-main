@@ -1,19 +1,21 @@
+import IconAdd from '@/icons/IconAdd';
+import IconDecrement from '@/icons/IconDecrement';
+import IconRemove from '@/icons/IconRemove';
 import { ButtonHTMLAttributes } from 'react';
 import styles from './styles.module.scss';
-import IconDecrement from '@/icons/IconDecrement';
-import IconAdd from '@/icons/IconAdd';
 
 type ButtonParams = {
   label?: string;
   className?: string;
   rightIcon?: 'emptyCart' | 'decrement' | 'add';
-  leftIcon?: 'emptyCart' | 'decrement' | 'add';
-  variant?: 'primary' | 'card' | 'product';
+  leftIcon?: 'emptyCart' | 'decrement' | 'add' | 'remove';
+  variant?: 'primary' | 'card' | 'product' | 'ghost';
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const iconMap = {
   emptyCart: <IconAdd />,
   decrement: <IconDecrement />,
+  remove: <IconRemove />,
   add: <IconAdd />,
 };
 

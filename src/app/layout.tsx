@@ -1,6 +1,6 @@
+import '@/styles/global.scss';
 import type { Metadata } from 'next';
 import { Red_Hat_Text } from 'next/font/google';
-import '@/styles/global.scss';
 
 const redHatText = Red_Hat_Text({
   subsets: ['latin'],

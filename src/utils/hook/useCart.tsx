@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 
 interface CardParams {
   image: string;
@@ -16,6 +16,7 @@ interface CartItem extends CardParams {
 interface CartContextType {
   cartItems: CartItem[];
   addToCart: (item: CardParams) => void;
+  removeFromCart: (title: string) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -39,8 +40,20 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     });
   };
 
+  const removeFromCart = (title: string) => {
+    setCartItems((prevItems) => {
+      const itemExists = prevItems.find((i) => i.title === title);
+      if (itemExists && itemExists.quantity > 1) {
+        return prevItems.map((i) =>
+          i.title === title ? { ...i, quantity: i.quantity - 1 } : i
+        );
+      }
+      return prevItems.filter((i) => i.title !== title);
+    });
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );
