@@ -1,9 +1,9 @@
 'use client';
 
 import IconEmptyCart from '@/icons/IconEmptyCart';
-import styles from './styles.module.scss';
-import Button from '../Button';
 import { useCart } from '@/utils/hook/useCart';
+import Button from '../Button';
+import styles from './styles.module.scss';
 
 export default function Cart() {
   const { cartItems } = useCart();
@@ -17,11 +17,13 @@ export default function Cart() {
 
   return (
     <section className={styles['cart-wrapper']}>
-      <h1>Your Cart {cartItems.length}</h1>
+      <h1 className={styles['cart-title']}>Your Cart {cartItems.length}</h1>
       {isEmpty ? (
         <div className={styles['cart-empty']}>
           <IconEmptyCart />
-          <p>Your added items will appear here</p>
+          <p className={styles['cart-empty-content']}>
+            Your added items will appear here
+          </p>
         </div>
       ) : (
         <div className={styles['cart-container']}>
@@ -45,13 +47,17 @@ export default function Cart() {
           </div>
         </div>
       )}
-      <Button
-        variant="primary"
-        label="button to confirm the purchase order"
-        className={styles['card-button']}
-      >
-        Confirm Order
-      </Button>
+      {!isEmpty ? (
+        <Button
+          variant="primary"
+          label="button to confirm the purchase order"
+          className={styles['card-button']}
+        >
+          Confirm Order
+        </Button>
+      ) : (
+        ''
+      )}
     </section>
   );
 }

@@ -1,9 +1,9 @@
 'use client';
 
-import Image from 'next/image';
-import styles from './styles.module.scss';
-import Button from '../Button';
 import { useCart } from '@/utils/hook/useCart';
+import Image from 'next/image';
+import Button from '../Button';
+import styles from './styles.module.scss';
 
 interface CardParams {
   image: string;
@@ -28,16 +28,10 @@ export default function Card({ content }: CardProps) {
               <Image
                 src={image}
                 fill
+                quality={100}
+                priority
                 alt={`Image of the delicious dish ${title}`}
-                style={{
-                  objectFit: 'cover',
-                  position: 'absolute',
-                  width: '100%',
-                  height: '100%',
-                  top: '0',
-                  left: '0',
-                  borderRadius: '8px',
-                }}
+                className={styles['image']}
               />
 
               <Button
