@@ -1,0 +1,52 @@
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.card-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 3.8rem;
+}
+
+.card-image-wrapper {
+  width: 32.7rem;
+}
+
+.image-container {
+  position: relative;
+  padding-top: 64.84%;
+  height: 0;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  h3 {
+    @include body;
+    color: $rose-500;
+  }
+
+  h1 {
+    @include highlighted;
+    color: $rose-900;
+  }
+
+  h2 {
+    @include highlighted;
+    color: $red;
+  }
+}
+
+.card-button {
+  position: absolute;
+  bottom: -2.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16rem;
+}
