@@ -4,6 +4,8 @@
   border-radius: 50%;
   color: $white;
   padding: 1.6rem 2.4rem;
+  border-radius: 99rem;
+
   @include highlighted;
 
   &:hover {
@@ -20,13 +22,16 @@
 
 .card {
   display: flex;
+  justify-content: center;
   align-items: center;
+  width: fit-content;
   gap: 0.8rem;
-  padding: 1.25rem 2.8rem;
+  padding: 1.2rem 2.8rem;
   background-color: $white;
   border: 1px solid $rose-400;
-  @include highlighted;
+  border-radius: 99rem;
   color: $rose-900;
+  @include strong;
 
   &:hover {
     color: $red;
@@ -39,8 +44,10 @@
   justify-content: space-between;
   align-items: center;
   gap: 0.8rem;
-  padding: 1.25rem 2.8rem;
+  padding: 1.2rem 2.8rem;
   background-color: $red;
-  @include highlighted;
   color: $rose-900;
+  border-radius: 99rem;
+
+  @include highlighted;
 }

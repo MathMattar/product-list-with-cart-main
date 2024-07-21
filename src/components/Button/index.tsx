@@ -1,6 +1,5 @@
 import { ButtonHTMLAttributes } from 'react';
 import styles from './styles.module.scss';
-import IconEmptyCart from '@/icons/IconEmptyCart';
 import IconDecrement from '@/icons/IconDecrement';
 import IconAdd from '@/icons/IconAdd';
 
@@ -9,11 +8,11 @@ type ButtonParams = {
   className?: string;
   rightIcon?: 'emptyCart' | 'decrement' | 'add';
   leftIcon?: 'emptyCart' | 'decrement' | 'add';
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'card' | 'product';
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const iconMap = {
-  emptyCart: <IconEmptyCart />,
+  emptyCart: <IconAdd />,
   decrement: <IconDecrement />,
   add: <IconAdd />,
 };
