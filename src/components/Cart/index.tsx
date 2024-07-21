@@ -48,7 +48,6 @@ export default function Cart() {
                   className={styles['item-remove']}
                   onClick={() => {
                     removeFromCart(item.title);
-                    console.log('clicou');
                   }}
                 />
               </li>
