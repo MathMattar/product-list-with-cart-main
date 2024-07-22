@@ -1,8 +1,8 @@
-import { CartProvider } from '@/utils/hook/useCart';
-import styles from './styles.module.scss';
 import Card from '@/components/Card';
 import Cart from '@/components/Cart';
 import { cardContent } from '@/constants/_card';
+import { CartProvider } from '@/utils/hook/useCart';
+import styles from './styles.module.scss';
 
 export default function Desserts() {
   return (

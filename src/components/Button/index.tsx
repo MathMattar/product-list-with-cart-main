@@ -1,4 +1,5 @@
 import IconAdd from '@/icons/IconAdd';
+import IconCart from '@/icons/IconCart';
 import IconDecrement from '@/icons/IconDecrement';
 import IconRemove from '@/icons/IconRemove';
 import { ButtonHTMLAttributes } from 'react';
@@ -7,24 +8,22 @@ import styles from './styles.module.scss';
 type ButtonParams = {
   label?: string;
   className?: string;
-  rightIcon?: 'emptyCart' | 'decrement' | 'add';
-  leftIcon?: 'emptyCart' | 'decrement' | 'add' | 'remove';
-  variant?: 'primary' | 'card' | 'product' | 'ghost';
+  icon?: 'cart' | 'decrement' | 'add' | 'remove' | '';
+  variant?: 'primary' | 'card' | 'product' | 'ghost' | '';
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const iconMap = {
-  emptyCart: <IconAdd />,
+  cart: <IconCart />,
+  add: <IconAdd />,
   decrement: <IconDecrement />,
   remove: <IconRemove />,
-  add: <IconAdd />,
 };
 
 export default function Button({
   children,
   label,
   className,
-  rightIcon,
-  leftIcon,
+  icon,
   variant = 'primary',
   ...buttonProps
 }: ButtonParams) {
@@ -36,9 +35,8 @@ export default function Button({
       className={`${className ?? ''} ${name} ${styles['default']}`}
       {...buttonProps}
     >
-      {leftIcon && iconMap[leftIcon]}
+      {icon && iconMap[icon]}
       {children}
-      {rightIcon && iconMap[rightIcon]}
     </button>
   );
 }

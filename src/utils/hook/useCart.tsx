@@ -1,6 +1,12 @@
 'use client';
 
-import { createContext, ReactNode, useContext, useState } from 'react';
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useState,
+} from 'react';
 
 interface CardParams {
   image: string;
@@ -28,7 +34,7 @@ interface CartProviderProps {
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const addToCart = (item: CardParams) => {
+  const addToCart = useCallback((item: CardParams) => {
     setCartItems((prevItems) => {
       const itemExists = prevItems.find((i) => i.title === item.title);
       if (itemExists) {
@@ -38,9 +44,9 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       }
       return [...prevItems, { ...item, quantity: 1 }];
     });
-  };
+  }, []);
 
-  const removeFromCart = (title: string) => {
+  const removeFromCart = useCallback((title: string) => {
     setCartItems((prevItems) => {
       const itemExists = prevItems.find((i) => i.title === title);
       if (itemExists && itemExists.quantity > 1) {
@@ -50,7 +56,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       }
       return prevItems.filter((i) => i.title !== title);
     });
-  };
+  }, []);
 
   return (
     <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>

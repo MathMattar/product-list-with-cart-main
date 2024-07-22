@@ -1,18 +1,18 @@
-.card-wrapper {
+.card__wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2.4rem;
 }
 
-.card-container {
+.card__container {
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 3.8rem;
 }
 
-.card-image-wrapper {
+.card__image-wrapper {
   width: 32.7rem;
 }
 
@@ -35,7 +35,7 @@
   transition: outline 0.3s ease;
 }
 
-.card-text {
+.card__text {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -56,10 +56,30 @@
   }
 }
 
-.card-button {
+.card__button {
   position: absolute;
   bottom: -2.2rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 20;
+}
+
+.card__button-container {
+  position: absolute;
+  bottom: -2.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $red;
+  border-radius: 99rem;
+  width: 16rem;
+  padding: 1.2rem;
+
+  p {
+    color: $white;
+    @include strong;
+  }
 }

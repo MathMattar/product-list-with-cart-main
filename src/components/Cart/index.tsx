@@ -1,7 +1,8 @@
 'use client';
 
-import IconEmptyCart from '@/icons/IconEmptyCart';
+import ImageEmptyCart from '@/icons/ImageEmptyCart';
 import { useCart } from '@/utils/hook/useCart';
+import { useMemo } from 'react';
 import Button from '../Button';
 import styles from './styles.module.scss';
 
@@ -9,18 +10,18 @@ export default function Cart() {
   const { cartItems, removeFromCart } = useCart();
   const isEmpty = cartItems.length === 0;
 
-  const calculateTotal = () => {
+  const calculateTotal = useMemo(() => {
     return cartItems
       .reduce((total, item) => total + item.value * item.quantity, 0)
       .toFixed(2);
-  };
+  }, [cartItems]);
 
   return (
     <section className={styles['cart-wrapper']}>
       <h1 className={styles['cart-title']}>Your Cart ({cartItems.length})</h1>
       {isEmpty ? (
         <div className={styles['cart-empty']}>
-          <IconEmptyCart />
+          <ImageEmptyCart />
           <p className={styles['cart-empty-content']}>
             Your added items will appear here
           </p>
@@ -43,7 +44,7 @@ export default function Cart() {
                   </div>
                 </div>
                 <Button
-                  leftIcon="remove"
+                  icon="remove"
                   variant="ghost"
                   className={styles['item-remove']}
                   onClick={() => {
@@ -55,7 +56,7 @@ export default function Cart() {
           </ul>
           <div className={styles['cart-total']}>
             <h3 className={styles['total-order']}>Order Total</h3>
-            <p className={styles['total']}>${calculateTotal()}</p>
+            <p className={styles['total']}>${calculateTotal}</p>
           </div>
         </div>
       )}
