@@ -19,13 +19,14 @@ interface CartItem extends CardParams {
   quantity: number;
 }
 
-interface CartContextType {
+interface CartContextTypes {
   cartItems: CartItem[];
   addToCart: (item: CardParams) => void;
   removeFromCart: (title: string) => void;
+  calculateTotal: () => string;
 }
 
-const CartContext = createContext<CartContextType | undefined>(undefined);
+const CartContext = createContext<CartContextTypes | undefined>(undefined);
 
 interface CartProviderProps {
   children: ReactNode;
@@ -58,14 +59,22 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     });
   }, []);
 
+  const calculateTotal = useCallback(() => {
+    return cartItems
+      .reduce((total, item) => total + item.value * item.quantity, 0)
+      .toFixed(2);
+  }, [cartItems]);
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{ cartItems, addToCart, removeFromCart, calculateTotal }}
+    >
       {children}
     </CartContext.Provider>
   );
 };
 
-export const useCart = (): CartContextType => {
+export const useCart = (): CartContextTypes => {
   const context = useContext(CartContext);
   if (!context) {
     throw new Error('useCart must be used within a CartProvider');

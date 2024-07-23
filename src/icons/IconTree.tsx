@@ -4,10 +4,10 @@ export default function IconTree({ ...svgParams }: IconParams) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="10"
-      height="2"
+      width="20"
+      height="20"
       fill="none"
-      viewBox="0 0 10 2"
+      viewBox="0 0 20 20"
       {...svgParams}
     >
       <path

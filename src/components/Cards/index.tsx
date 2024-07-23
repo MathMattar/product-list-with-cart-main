@@ -1,6 +1,7 @@
 'use client';
 
-import { useCart } from '@/utils/hook/useCart';
+import { useCart } from '@/utils/context/useCart';
+import classNames from 'classnames';
 import Image from 'next/image';
 import { memo } from 'react';
 import Button from '../Button';
@@ -17,7 +18,7 @@ interface CardProps {
   content: CardParams[];
 }
 
-const Card = memo(({ content }: CardProps) => {
+const Cards = memo(({ content }: CardProps) => {
   const { cartItems, addToCart, removeFromCart } = useCart();
 
   return (
@@ -27,6 +28,10 @@ const Card = memo(({ content }: CardProps) => {
           (acc, item) => (item.title === title ? acc + item.quantity : acc),
           0
         );
+
+        const imageBorder = classNames(styles['image'], {
+          [styles['image--border']]: product >= 1,
+        });
 
         return (
           <div key={index} className={styles['card__container']}>
@@ -38,7 +43,7 @@ const Card = memo(({ content }: CardProps) => {
                   quality={100}
                   priority
                   alt={`Image of the delicious dish ${title}`}
-                  className={styles['image']}
+                  className={imageBorder}
                 />
 
                 {product === 0 ? (
@@ -87,4 +92,4 @@ const Card = memo(({ content }: CardProps) => {
   );
 });
 
-export default Card;
+export default Cards;

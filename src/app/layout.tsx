@@ -1,5 +1,7 @@
 import '@/styles/global.scss';
-import type { Metadata } from 'next';
+import { CartProvider } from '@/utils/context/useCart';
+import { ModalProvider } from '@/utils/context/useModal';
+import { Metadata } from 'next';
 import { Red_Hat_Text } from 'next/font/google';
 
 const redHatText = Red_Hat_Text({
@@ -20,8 +22,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={redHatText.variable}>{children}</body>
-    </html>
+    <ModalProvider>
+      <CartProvider>
+        <html lang="en">
+          <body className={redHatText.variable}>
+            <div id="modal" />
+            {children}
+          </body>
+        </html>
+      </CartProvider>
+    </ModalProvider>
   );
 }

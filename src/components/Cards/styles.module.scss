@@ -32,7 +32,10 @@
   border-radius: 8px;
   z-index: 10;
   outline: none;
-  transition: outline 0.3s ease;
+}
+
+.image--border {
+  outline: 0.2rem solid $red;
 }
 
 .card__text {

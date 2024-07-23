@@ -1,0 +1,21 @@
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #aaaaaabf;
+
+  z-index: 999;
+
+  cursor: pointer;
+}
+
+.modal__wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  cursor: default;
+}

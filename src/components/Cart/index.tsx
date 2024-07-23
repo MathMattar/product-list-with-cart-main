@@ -1,20 +1,25 @@
 'use client';
 
+import IconTree from '@/icons/IconTree';
 import ImageEmptyCart from '@/icons/ImageEmptyCart';
-import { useCart } from '@/utils/hook/useCart';
-import { useMemo } from 'react';
+import { useCart } from '@/utils/context/useCart';
+import { useModal } from '@/utils/context/useModal';
 import Button from '../Button';
+import CartList from '../CartList';
+import ConfirmedModal from '../ConfirmedModal';
+import { Modal } from '../Modal';
 import styles from './styles.module.scss';
 
 export default function Cart() {
-  const { cartItems, removeFromCart } = useCart();
+  const { cartItems } = useCart();
   const isEmpty = cartItems.length === 0;
 
-  const calculateTotal = useMemo(() => {
-    return cartItems
-      .reduce((total, item) => total + item.value * item.quantity, 0)
-      .toFixed(2);
-  }, [cartItems]);
+  const { close, open, opened } = useModal();
+
+  const modals = {
+    '': null,
+    confirmed: <ConfirmedModal />,
+  };
 
   return (
     <section className={styles['cart-wrapper']}>
@@ -27,56 +32,34 @@ export default function Cart() {
           </p>
         </div>
       ) : (
-        <div className={styles['cart-container']}>
-          <ul className={styles['cart-list']}>
-            {cartItems.map((item, index) => (
-              <li key={index} className={styles['cart-item']}>
-                <div className={styles['item-info']}>
-                  <h2 className={styles['item-title']}>{item.title}</h2>
-                  <div className={styles['item-price']}>
-                    <p className={styles['item-quantily']}>{item.quantity}x</p>
-                    <p className={styles['item-value']}>
-                      @${item.value.toFixed(2)}
-                    </p>
-                    <p className={styles['item-total-value']}>
-                      ${(item.value * item.quantity).toFixed(2)}
-                    </p>
-                  </div>
-                </div>
-                <Button
-                  icon="remove"
-                  variant="ghost"
-                  className={styles['item-remove']}
-                  onClick={() => {
-                    removeFromCart(item.title);
-                  }}
-                />
-              </li>
-            ))}
-          </ul>
-          <div className={styles['cart-total']}>
-            <h3 className={styles['total-order']}>Order Total</h3>
-            <p className={styles['total']}>${calculateTotal}</p>
+        <>
+          <CartList />
+
+          <div className={styles['footer__content']}>
+            <div className={styles['footer__carbon']}>
+              <IconTree />
+              <p className={styles['footer__text']}>
+                This is a{' '}
+                <span className={styles['footer__text--highlighted']}>
+                  carbon-neutral
+                </span>{' '}
+                delivery
+              </p>
+            </div>
+
+            <Button
+              variant="primary"
+              label="button to confirm the purchase order"
+              onClick={open}
+              className={styles['cart__button']}
+            >
+              Confirm Order
+            </Button>
           </div>
-        </div>
-      )}
-      {!isEmpty ? (
-        <div className={styles['cart-cta']}>
-          <div>
-            <p className={styles['cta-content']}>
-              This is a <span>carbon-neutral</span> delivery
-            </p>
-          </div>
-          <Button
-            variant="primary"
-            label="button to confirm the purchase order"
-            className={styles['cart-button']}
-          >
-            Confirm Order
-          </Button>
-        </div>
-      ) : (
-        ''
+          <Modal isOpen={Boolean(opened)} closeModal={close}>
+            {modals[opened]}
+          </Modal>
+        </>
       )}
     </section>
   );
