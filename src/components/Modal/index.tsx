@@ -1,9 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-
 import { createPortal } from 'react-dom';
-
 import styles from './styles.module.scss';
 
 interface ModalProps {
@@ -31,14 +29,14 @@ export const Modal = ({ isOpen, closeModal, children }: ModalProps) => {
   }
 
   return createPortal(
-    <div className={styles['modal__overlay']} onClick={closeModal}>
+    <section className={styles['modal__overlay']} onClick={closeModal}>
       <section
         className={styles['modal__wrapper']}
         onClick={(e) => e.stopPropagation()}
       >
         {children}
       </section>
-    </div>,
+    </section>,
     document.getElementById('modal') as HTMLElement
   );
 };
