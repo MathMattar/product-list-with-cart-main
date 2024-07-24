@@ -18,6 +18,10 @@ body {
   min-height: 100svh;
 }
 
+body:has(> #modal > .--opened) {
+  overflow: hidden;
+}
+
 button {
   display: flex;
   flex-direction: row;

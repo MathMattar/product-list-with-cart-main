@@ -1,8 +1,10 @@
+import { useCart } from '@/utils/context/useCart';
 import Button from '../Button';
 import CartList from '../CartList';
 import styles from './styles.module.scss';
 
 export default function ConfirmedModal() {
+  const { newOrder } = useCart();
   return (
     <section className={styles['confirmed__wrapper']}>
       <div className={styles['confirmed__header']}>
@@ -12,7 +14,7 @@ export default function ConfirmedModal() {
         </h2>
       </div>
       <CartList isModal />
-      <Button>Start New Order</Button>
+      <Button onClick={newOrder}>Start New Order</Button>
     </section>
   );
 }

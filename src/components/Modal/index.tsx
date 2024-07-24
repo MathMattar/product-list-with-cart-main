@@ -29,7 +29,10 @@ export const Modal = ({ isOpen, closeModal, children }: ModalProps) => {
   }
 
   return createPortal(
-    <section className={styles['modal__overlay']} onClick={closeModal}>
+    <section
+      className={`${styles['modal__overlay']} ${isOpen ? styles['--opened'] : ''}`}
+      onClick={closeModal}
+    >
       <section
         className={styles['modal__wrapper']}
         onClick={(e) => e.stopPropagation()}

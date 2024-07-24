@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Button from '../Button';
 import styles from './styles.module.scss';
 
-export default function CartList({ isModal }: { isModal: boolean }) {
+export default function CartList({ isModal }: { isModal?: boolean }) {
   const { cartItems, removeFromCart, calculateTotal } = useCart();
 
   const modalLayout = isModal ? styles['--modal'] : '';

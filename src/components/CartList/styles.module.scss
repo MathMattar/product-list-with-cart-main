@@ -44,7 +44,7 @@
       'button title title total'
       'button quantity value total';
     width: 100%;
-    grid-template-columns: 1.6rem 3rem auto auto;
+    grid-template-columns: 1.6rem 3rem auto 5rem;
   }
 }
 
@@ -54,7 +54,6 @@
 
 .item__quantity {
   grid-area: quantity;
-  grid-column: 2 / 3;
 }
 
 .item__value {

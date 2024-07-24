@@ -24,6 +24,7 @@ interface CartContextTypes {
   addToCart: (item: CardParams) => void;
   removeFromCart: (title: string) => void;
   calculateTotal: () => string;
+  newOrder: () => void;
 }
 
 const CartContext = createContext<CartContextTypes | undefined>(undefined);
@@ -65,9 +66,14 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       .toFixed(2);
   }, [cartItems]);
 
+  const newOrder = () => {
+    setCartItems([]);
+    close();
+  };
+
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, calculateTotal }}
+      value={{ cartItems, addToCart, removeFromCart, calculateTotal, newOrder }}
     >
       {children}
     </CartContext.Provider>

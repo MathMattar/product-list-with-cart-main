@@ -1,4 +1,6 @@
 .primary {
+  display: flex;
+  justify-content: center;
   position: relative;
   background-color: $red;
   border-radius: 50%;
