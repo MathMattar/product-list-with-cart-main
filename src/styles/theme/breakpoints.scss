@@ -1,42 +1,41 @@
 //480px
 @mixin xs {
-    @media (max-width: 30em) {
-      @content;
-    }
+  @media (min-width: 30em) {
+    @content;
   }
-  
-  //640px
-  @mixin sm {
-    @media (max-width: 40em) {
-      @content;
-    }
+}
+
+//640px
+@mixin sm {
+  @media (min-width: 40em) {
+    @content;
   }
-  
-  //768px
-  @mixin md {
-    @media (max-width: 48em) {
-      @content;
-    }
+}
+
+//768px
+@mixin md {
+  @media (min-width: 48em) {
+    @content;
   }
-  
-  //1024px
-  @mixin lg {
-    @media (max-width: 64em) {
-      @content;
-    }
+}
+
+//1024px
+@mixin lg {
+  @media (min-width: 64em) {
+    @content;
   }
-  
-  //1280px
-  @mixin xl {
-    @media (max-width: 80em) {
-      @content;
-    }
+}
+
+//1280px
+@mixin xl {
+  @media (min-width: 80em) {
+    @content;
   }
-  
-  //1440px
-  @mixin xxl {
-    @media (min-width: 90em) {
-      @content;
-    }
+}
+
+//1440px
+@mixin xxl {
+  @media (min-width: 90em) {
+    @content;
   }
-  
+}

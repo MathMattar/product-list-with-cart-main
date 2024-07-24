@@ -17,4 +17,15 @@
   width: 100%;
 
   cursor: default;
+
+  @include md {
+    width: calc(100% - 8rem);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  @include xl {
+    max-width: 59.2rem;
+  }
 }

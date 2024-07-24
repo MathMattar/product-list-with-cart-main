@@ -1,0 +1,10 @@
+.main {
+  background-color: $rose-50;
+
+  @include xl {
+    display: grid;
+    grid-template-columns: 55.56vw auto;
+    column-gap: 3.2rem;
+    padding: 8.8rem 11.2rem;
+  }
+}
